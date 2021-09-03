@@ -71,6 +71,27 @@
         var input = document.createElement('input');
         input.type = 'file';
         
+        var img = document.getElementById("myimg");
+        var width = 400;
+        function handleFiles() {
+          var input = document.createElement('input');
+          input.type = 'file';
+          var file = filesToUpload[0];
+        
+          // Create a file reader
+          var reader1 = new FileReader();
+          // Set the image once loaded into file reader
+          reader1.onload = function(e) {
+            img.onload = function() {
+              if (this.naturalWidth > width) {
+                this.width = width;
+              }
+            }
+            img.src = e.target.result;
+          }
+          reader1.readAsDataURL(file);
+        }
+
         input.onchange = e => {
             files = e.target.files;
             reader = new FileReader();
