@@ -20,25 +20,27 @@
     <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-storage.js"></script> 
 
     <script>
-      var img = document.getElementById("myimg");
-      var width = 400;
-      function handleFiles() {
-        var input = document.createElement('input');
-        input.type = 'file';
-        var file = filesToUpload[0];
-    
-        // Create a file reader
-        var reader1 = new FileReader();
-        // Set the image once loaded into file reader
-        reader1.onload = function(e) {
-          img.onload = function() {
-            if (this.naturalWidth > width) {
-              this.width = width;
+      document.getElementById("select").onclick = function(e) {
+        var img = document.getElementById("myimg");
+        var width = 400;
+        function handleFiles() {
+          var input = document.createElement('input');
+          input.type = 'file';
+          var file = filesToUpload[0];
+        
+          // Create a file reader
+          var reader1 = new FileReader();
+          // Set the image once loaded into file reader
+          reader1.onload = function(e) {
+            img.onload = function() {
+              if (this.naturalWidth > width) {
+                this.width = width;
+              }
             }
+            img.src = e.target.result;
           }
-          img.src = e.target.result;
+          reader1.readAsDataURL(file);
         }
-        reader1.readAsDataURL(file);
       }
     </script>
 
@@ -66,18 +68,18 @@
       //const storage = getStorage(firebase);
       
       document.getElementById("select").onclick = function(e) {
-          var input = document.createElement('input');
-          input.type = 'file';
-          
-          input.onchange = e => {
-              files = e.target.files;
-              reader = new FileReader();
-              reader.onload = function() {
-                  document.getElementById("myimg").src = reader.result;
-              }
-              reader.readAsDataURL(files[0])
-          }
-          input.click();
+        var input = document.createElement('input');
+        input.type = 'file';
+        
+        input.onchange = e => {
+            files = e.target.files;
+            reader = new FileReader();
+            reader.onload = function() {
+                document.getElementById("myimg").src = reader.result;
+            }
+            reader.readAsDataURL(files[0])
+        }
+        input.click();
       }
       document.getElementById("upload").onclick = function() {
         ImgName = document.getElementById('namebox').value;
