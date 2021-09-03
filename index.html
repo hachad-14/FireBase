@@ -48,19 +48,11 @@
         input.type = 'file';
         
         input.onchange = e => {
-          var loadFile = function(event) {
-            var output = document.getElementById('myimg');
-            output.src = URL.createObjectURL(event.target.files[0]);
-            output.onload = function() {
-              URL.revokeObjectURL(output.src) // free memory
-            }
-          };
-
             files = e.target.files;
             reader = new FileReader();
             reader.onload = function() {
-                document.getElementById("myimg").src = reader.result;
-                document.getElementById("myimg").addEventListener('change', (e) => doSomethingWithFiles(e.target.files));
+              document.getElementById("myimg").src = reader.result;
+              document.getElementById("myimg").src = reader.value;
             }
             reader.readAsDataURL(files[0])
         }
