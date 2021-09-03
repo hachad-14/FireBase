@@ -45,7 +45,6 @@
       document.getElementById("select").onclick = function(e) {
           var input = document.createElement('input');
           input.type = 'file';
-          //input.click(); 
           
           input.onchange = e => {
               files = e.target.files;
@@ -53,6 +52,27 @@
               reader.onload = function() {
                   document.getElementById("myimg").src = reader.result;
               }
+
+              var img = document.getElementById("myimg");
+              var width = 400;
+              function handleFiles() {
+                var filesToUpload = document.getElementById('input').files;
+                var file = filesToUpload[0];
+              
+                // Create a file reader
+                var reader = new FileReader();
+                // Set the image once loaded into file reader
+                reader.onload = function(e) {
+                  img.onload = function() {
+                    if (this.naturalWidth > width) {
+                      this.width = width;
+                    }
+                  }
+                  img.src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+              }
+
               reader.readAsDataURL(files[0])
           }
           input.click();
