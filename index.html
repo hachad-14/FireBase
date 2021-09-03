@@ -1,41 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+       <style> img{height: 200px;width: 200px;border: 2px solid black;}</style>
+    Image Name <input id="namebox" type="text"> <br><br>
+    <img id="myimg"> <label id="upProgress"></label> <br><br>
+    <button id="select">Select Image</button>
+    <button id="upload">Upload</button>
+    <button id="retrieve">Retrieve Image</button>
 
-<html>
-    <head>
-        <title>Firebase Javascript: Upload Picture Sample Code</title>
-        <!-- Link the javascript file -->
-        <script src="app.js"></script> 
-        
-        
-    </head>
-    
-    <body>
-        
-        <button onclick="getPictureFromCamera()">
-            Take A Picture with Camera
-        </button>
-    
-        <br/>
-    
-        <button onclick="getPictureFromGallery()">
-            Upload from Gallery
-        </button>
-        <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
-        <script>
-          // Initialize Firebase
-          // TODO: Replace with your project's customized code snippet
-          var config = {
-            apiKey: "AIzaSyBsWbH_cHvDHsMFiMi_DNn13e7sfwk2zZA",
-            authDomain: "test-54a77.firebaseapp.com",
-            projectId: "test-54a77",
-            storageBucket: "test-54a77.appspot.com",
-            messagingSenderId: "94297928022",
-            appId: "1:94297928022:web:f82973978d5592cc47a6f7",
-            measurementId: "G-12GPLK769J"
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-storage.js"></script> 
 
-          };
-          firebase.initializeApp(config);
-        </script>
+    <script type="module" id="MainScript">
 
-    
-    </body>
-    </html>
+      //import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.1/firebase-app.js";
+      //import { getStorage } from "https://www.gstatic.com/firebasejs/9.0.1/firebase-storage.js";
+
+      var ImgName, ImgUrl;
+      var files = [];
+      var reader;
+      
+      const firebaseConfig = {
+        apiKey: "AIzaSyBsWbH_cHvDHsMFiMi_DNn13e7sfwk2zZA",
+        authDomain: "test-54a77.firebaseapp.com",
+        projectId: "test-54a77",
+        storageBucket: "test-54a77.appspot.com",       
+        messagingSenderId: "94297928022",       
+        appId: "1:94297928022:web:f82973978d5592cc47a6f7",        
+        measurementId: "G-12GPLK769J"
+      };
+      firebase.initializeApp(firebaseConfig);
+      //const firebase = initializeApp(firebaseConfig);
+      //const storage = getStorage(firebase);
+      
+      document.getElementById("select").onclick = function(e) {
+          var input = document.createElement('input');
+          input.type = 'file';
+          input.click(); 
+          
+          input.onchange = e => {
+              files = e.target.files;
+              reader = new FileReader();
+              reader.onload = function() {
+                  document.getElementById("myimg").src = reader.result;
+              }
+              reader.readAsDataURL(files[0])
+          }
+          input.click();
+      }
+      document.getElementById("upload").onclick = function() {
+        ImgName = document.getElementById('namebox');
+        var uploadTask = firebase.storage().ref('Images/'+ImgName+".png").put(files[0]);
+
+        uploadTask.on('state_changed', function(snapshot) {
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            document.getElementById("UpProgress").innerHTML = 'Upload'+progress+'£';
+        },
+
+        function(error) {
+            alert('error');
+        },
+        function() {
+            uploadTask.snapshot.ref.getDownloadURL().then(function(url) {
+                ImgUrl = url;
+
+            firebase.database().ref('Pictures/'+ImgName).set({
+                Name: ImgName,
+                Link: ImgUrl
+            });
+            alert('good zabo');
+          });
+        });
+      }
+    </script>
+</body>
+</html>
