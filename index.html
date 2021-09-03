@@ -52,7 +52,7 @@
             reader = new FileReader();
             reader.onload = function() {
                 document.getElementById("myimg").src = reader.result;
-                document.getElementById("myimg").src = e.target.result;
+                document.getElementById('myimg').src = snapshot.val();
             }
             reader.readAsDataURL(files[0])
         }
