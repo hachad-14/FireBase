@@ -19,6 +19,28 @@
     <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-storage.js"></script> 
 
+    <script>
+      var img = document.getElementById("myimg");
+      var width = 400;
+      function handleFiles() {
+        var filesToUpload = document.getElementById('select').files;
+        var file = filesToUpload[0];
+    
+        // Create a file reader
+        var reader = new FileReader();
+        // Set the image once loaded into file reader
+        reader.onload = function(e) {
+          img.onload = function() {
+            if (this.naturalWidth > width) {
+              this.width = width;
+            }
+          }
+          img.src = e.target.result;
+        }
+        reader.readAsDataURL(file);
+      }
+    </script>
+
     <script type="module" id="MainScript">
 
       //import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.1/firebase-app.js";
