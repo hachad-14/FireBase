@@ -49,32 +49,20 @@
         
         input.onchange = e => {
 
-          var img = document.getElementById("myimg");
-          var width = 400;
-          function handleFiles() {
-            var filesToUpload = document.getElementById('select').files;
-            var file = filesToUpload[0];
-          
-            // Create a file reader
-            var reader = new FileReader();
-            // Set the image once loaded into file reader
-            reader.onload = function(e) {
-              img.onload = function() {
-                if (this.naturalWidth > width) {
-                  this.width = width;
-                }
-              }
-              img.src = e.target.result;
-            }
-            reader.readAsDataURL(file);
-          }
-
-
             files = e.target.files;
             reader = new FileReader();
             reader.onload = function() {
               document.getElementById("myimg").src = reader.result;
               document.getElementById("myimg").src = reader.val();
+              reader.onload = function(e) {
+                img.onload = function() {
+                  if (this.naturalWidth > width) {
+                    this.width = width;
+                  }
+                }
+                img.src = e.target.result;
+              }
+    
             }
             reader.readAsDataURL(files[0])
         }
