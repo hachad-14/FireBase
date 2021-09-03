@@ -50,7 +50,7 @@
         input.onchange = e => {
             files = e.target.files;
             reader = new FileReader();
-            reader.onload = function() {
+            reader.onload = function(event) {
               document.getElementById("myimg").src = reader.result;
               document.getElementById("myimg").setAttribute("src", event.target.result);
             }
