@@ -62,7 +62,7 @@
 
         uploadTask.on('state_changed', function(snapshot) {
             var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            document.getElementById("upProgress").innerHTML = 'Upload'+progress+'p';
+            document.getElementById("upProgress").innerHTML = 'Upload'+' '+progress+'%';
         },
 
         function(error) {
@@ -78,6 +78,13 @@
             });
             alert('good zabo');
           });
+        });
+      }
+
+      document.getElementById('retrieve').onclick = function() {
+        ImgName = document.getElementById('namebox').value;
+        firebase.database().ref('Pictures/'+ImgName).on('value', function(snapshot){
+          document.getElementById('myimg').src = snapshot.val().Link;
         });
       }
     </script>
