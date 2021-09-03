@@ -28,9 +28,9 @@
         var file = filesToUpload[0];
     
         // Create a file reader
-        var reader = new FileReader();
+        var reader1 = new FileReader();
         // Set the image once loaded into file reader
-        reader.onload = function(e) {
+        reader1.onload = function(e) {
           img.onload = function() {
             if (this.naturalWidth > width) {
               this.width = width;
@@ -38,7 +38,7 @@
           }
           img.src = e.target.result;
         }
-        reader.readAsDataURL(file);
+        reader1.readAsDataURL(file);
       }
     </script>
 
