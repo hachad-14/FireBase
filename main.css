@@ -52,7 +52,7 @@ body {
     }
     #upProgress {
         position: absolute;
-        top: 100vw;
+        top: 15vw;
         left: 35vw;
     }
     #console {
