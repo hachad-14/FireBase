@@ -48,6 +48,7 @@
       document.getElementById("select").onclick = function(e) {
         var input = document.createElement('input');
         input.type = 'file';
+        //input.capture = 'user' or 'environement'
         document.getElementById('console').innerHTML = 'Press Fired';
         input.addEventListener('change', (e) => {
           document.getElementById('console').innerHTML = 'Image Fired';
