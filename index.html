@@ -45,7 +45,7 @@
       //const firebase = initializeApp(firebaseConfig);
       //const storage = getStorage(firebase);
       
-      document.getElementById("select").addEventListener('click', function (evt) {
+      document.getElementById("select").onclick = function(e) {
         var input = document.createElement('input');
         input.type = 'file';
         console.log('Press Fired');
@@ -55,16 +55,16 @@
           reader = new FileReader();
           reader.onload = function() {
             document.getElementById("myimg").src = files.result;
-            document.getElementById("myimg").src = files.value;
-            document.getElementById("myimg").src = reader.result;//
-            document.getElementById("myimg").src = reader.value;
-            document.getElementById('myimg').src = window.URL.createObjectURL(files[0]);
+            //document.getElementById("myimg").src = files.value;
+            //document.getElementById("myimg").src = reader.result;//
+            //document.getElementById("myimg").src = reader.value;
+            //document.getElementById('myimg').src = window.URL.createObjectURL(files[0]);
             $('#myimg').attr('src', reader.result);
             }
             reader.readAsDataURL(files[0])
-        })
+        });
         input.click();
-      })
+      }
       document.getElementById("upload").onclick = function() {
         ImgName = document.getElementById('namebox').value;
         var uploadTask = firebase.storage().ref('Images/'+ImgName+".png").put(files[0]);
