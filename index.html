@@ -50,7 +50,7 @@
         input.type = 'file';
         
         input.onchange = e => {
-
+          document.getElementById('console').innerHTML = 'Fired';
             files = e.target.files;
             reader = new FileReader();
             reader.onload = function() {
@@ -58,7 +58,6 @@
               document.getElementById("myimg").src = files.value;
               document.getElementById("myimg").src = reader.result;//
               document.getElementById("myimg").src = reader.value;
-              document.getElementById("myimg").src = reader.val();
               document.getElementById('myimg').src = window.URL.createObjectURL(files[0]);
               $('#myimg').attr('src', reader.result);
             }
