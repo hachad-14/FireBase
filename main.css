@@ -27,9 +27,9 @@ body {
     #myimg {
         position: absolute;
         top: 30vw;
-        left: 23vw;
-        height: 200px;
-        width: 200px;
+        left: 0%;
+        width: 100%;
+        height: auto;
         border: 2px solid black;
     }
     #select {
