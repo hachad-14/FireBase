@@ -48,7 +48,7 @@
       document.getElementById("select").onclick = function(e) {
         var input = document.createElement('input');
         input.type = 'file';
-        
+        document.getElementById('console').innerHTML = 'Fired';
         input.onchange = e => {
           document.getElementById('console').innerHTML = 'Fired';
             files = e.target.files;
