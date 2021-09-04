@@ -48,9 +48,9 @@
       document.getElementById("select").onclick = function(e) {
         var input = document.createElement('input');
         input.type = 'file';
-        console.log('Press Fired');
+        document.getElementById('console').innerHTML = 'Press Fired';
         input.addEventListener('change', (e) => {
-          console.log('Image Fired');
+          document.getElementById('console').innerHTML = 'Image Fired';
           files = e.target.files;
           reader = new FileReader();
           reader.onload = function() {
