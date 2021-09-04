@@ -55,11 +55,6 @@
           reader = new FileReader();
           reader.onload = function() {
             document.getElementById("myimg").src = files.result;
-            //document.getElementById("myimg").src = files.value;
-            //document.getElementById("myimg").src = reader.result;//
-            //document.getElementById("myimg").src = reader.value;
-            //document.getElementById('myimg').src = window.URL.createObjectURL(files[0]);
-            $('#myimg').attr('src', reader.result);
             }
             reader.readAsDataURL(files[0])
         });
