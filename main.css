@@ -34,19 +34,19 @@ body {
     }
     #select {
         position: absolute;
-        top: 86vw;
+        top: auto;
         left: 14vw;
         padding: 1.5vw 0vw;
     }
     #upload {
         position: absolute;
-        top: 86vw;
+        top: auto;
         left: 42vw;
         padding: 1.5vw 0vw;
     }
     #retrieve {
         position: absolute;
-        top: 86vw;
+        top: auto;
         left: 60vw;
         padding: 1.5vw 0vw;
     }
