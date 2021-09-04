@@ -53,13 +53,12 @@
             files = e.target.files;
             reader = new FileReader();
             reader.onload = function() {
-              document.getElementById("myimg").src = reader.result;
-              document.getElementById("myimg").src = reader.val();
+              document.getElementById("myimg").src = files.result;
+              document.getElementById("myimg").src = files.value;
+              document.getElementById("myimg").src = reader.result;//
               document.getElementById("myimg").src = reader.value;
+              document.getElementById("myimg").src = reader.val();
               document.getElementById('myimg').src = window.URL.createObjectURL(files[0]);
-            }
-            reader.onerror = function() {
-              document.getElementById('console').innerHTML = 'Error in uploading IMG.'
             }
             reader.readAsDataURL(files[0])
         }
