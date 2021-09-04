@@ -26,27 +26,27 @@ body {
     }
     #myimg {
         position: absolute;
-        top: 30vw;
-        left: 0%;
-        width: 100%;
+        top: 40vw;
+        left: 10vw;
+        width: 80vw;
         height: auto;
         border: 2px solid black;
     }
     #select {
         position: absolute;
-        top: auto;
+        top: 25vw;
         left: 14vw;
         padding: 1.5vw 0vw;
     }
     #upload {
         position: absolute;
-        top: auto;
+        top: 25vw;
         left: 42vw;
         padding: 1.5vw 0vw;
     }
     #retrieve {
         position: absolute;
-        top: auto;
+        top: 25vw;
         left: 60vw;
         padding: 1.5vw 0vw;
     }
