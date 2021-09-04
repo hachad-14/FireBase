@@ -54,7 +54,7 @@
             reader = new FileReader();
             reader.onload = function() {
               //document.getElementById("myimg").src = reader.result;
-              document.getElementById('myimg').src = window.URL.createObjectURL(this.files[0]);
+              document.getElementById('myimg').src = window.URL.createObjectURL(files[0]);
             }
             reader.readAsDataURL(files[0])
         }
