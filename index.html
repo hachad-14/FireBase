@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="shortcut icon" href="#">
     <title>Document</title>
 </head>
@@ -53,12 +54,13 @@
             files = e.target.files;
             reader = new FileReader();
             reader.onload = function() {
-              document.getElementById("myimg").src = files.result;
-              document.getElementById("myimg").src = files.value;
-              document.getElementById("myimg").src = reader.result;//
-              document.getElementById("myimg").src = reader.value;
-              document.getElementById("myimg").src = reader.val();
-              document.getElementById('myimg').src = window.URL.createObjectURL(files[0]);
+              //document.getElementById("myimg").src = files.result;
+              //document.getElementById("myimg").src = files.value;
+              //document.getElementById("myimg").src = reader.result;//
+              //document.getElementById("myimg").src = reader.value;
+              //document.getElementById("myimg").src = reader.val();
+              //document.getElementById('myimg').src = window.URL.createObjectURL(files[0]);
+              $('#myimg').attr('src', reader.result);
             }
             reader.readAsDataURL(files[0])
         }
