@@ -28,7 +28,6 @@ document.getElementById("select").onclick = function(e) {
       reader.onload = function() {
         document.getElementById("myimg").src = files.result;
         $('#myimg').attr('src', reader.result);
-        getName();
         }
         reader.readAsDataURL(files[0])
     });
@@ -36,6 +35,8 @@ document.getElementById("select").onclick = function(e) {
 }
 document.getElementById("upload").onclick = function() {
     if(document.getElementById("namebox").value.length == 0) {
+        var ogName = document.getElementById("myimg").src.split("/").pop()[0];
+        console.log(ogName);
         ImgName = document.getElementById("myimg").src.split("/").pop()[0];
     } else {
         ImgName = document.getElementById('namebox').value;
@@ -65,9 +66,4 @@ document.getElementById('retrieve').onclick = function() {
   firebase.database().ref('Pictures/'+ImgName).on('value', function(snapshot){
     document.getElementById('myimg').src = snapshot.val().Link;
   });
-}
-
-function getName() {
-   var ogName = document.getElementById("myimg").src.split("/").pop()[0];
-   console.log(ogName);
 }
