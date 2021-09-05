@@ -50,15 +50,14 @@ body {
         left: 60vw;
         padding: 1.5vw 0vw;
     }
-    #upProgress {
-        position: absolute;
-        top: 15vw;
-        left: 35vw;
-    }
     #console {
         position: absolute;
-        top: 110vw;
-        left: 25vw;
+        top: 18vw;
+        left: 35vw;
         font-size: 3vw;
+        color: green;
+    }
+    #namebox {
+        text-transform: lowercase;
     }
 }
