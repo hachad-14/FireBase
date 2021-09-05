@@ -35,9 +35,8 @@ document.getElementById("select").onclick = function(e) {
 }
 document.getElementById("upload").onclick = function() {
     if(document.getElementById("namebox").value.length == 0) {
-        var ogName = document.getElementById("myimg").src.split("/").pop()[0];
-        console.log(ogName);
         ImgName = document.getElementById("myimg").src.split("/").pop()[0];
+        console.log(ImgName);
     } else {
         ImgName = document.getElementById('namebox').value;
     }
@@ -64,6 +63,7 @@ document.getElementById("upload").onclick = function() {
 document.getElementById('retrieve').onclick = function() {
   ImgName = document.getElementById('namebox').value;
   firebase.database().ref('Pictures/'+ImgName).on('value', function(snapshot){
-    document.getElementById('myimg').src = snapshot.val().Link;
+    //document.getElementById('myimg').src = snapshot.val().Link;
+    $('#myimg').attr('src', snapshot.val().Link);
   });
 }
