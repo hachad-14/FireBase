@@ -14,7 +14,7 @@ firebase.initializeApp(firebaseConfig);
 //const firebase = initializeApp(firebaseConfig);
 //const storage = getStorage(firebase);
 
-var ImgName, ImgUrl;
+var ImgName, ImgUrl, comment;
 var files = [];
 var reader;
 
@@ -40,7 +40,8 @@ document.getElementById("upload").onclick = function() {
   } else {
     ImgName = document.getElementById('namebox').value;
   }
-  var uploadTask = firebase.storage().ref('Images/'+ImgName+".png").put(files[0]);
+  comment = document.getElementById('commentbox').value;
+  var uploadTask = firebase.storage().ref('Images/'+ImgName+".png"+comment).put(files[0]);
   uploadTask.on('state_changed', function(snapshot) {
     var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
     document.getElementById("console").innerHTML = 'Upload'+' '+progress+'%';
@@ -53,7 +54,8 @@ document.getElementById("upload").onclick = function() {
       ImgUrl = url;
       firebase.database().ref('Pictures/'+ImgName).set({
           Name: ImgName,
-          Link: ImgUrl
+          Link: ImgUrl,
+          Legende: comment
       });
       console.log('Image Stored In DataBase.');
       document.getElementById('console').innerHTML = 'Image Stored In DataBase';
@@ -63,8 +65,18 @@ document.getElementById("upload").onclick = function() {
 document.getElementById('retrieve').onclick = function() {
   ImgName = document.getElementById('namebox').value;
   firebase.database().ref('Pictures/'+ImgName).on('value', function(snapshot){
-    //document.getElementById('myimg').src = snapshot.val().Link;
     $('#myimg').attr('src', snapshot.val().Link);
+    console.log(ImgName);
+    firebase.database().ref()
+    .child('Pictures')
+    .child(ImgName)
+    .once('value', function (openTicketsSnapshot) {
+      openTicketsSnapshot.forEach(function (openTicketSnapshot) {
+        //console.log(openTicketSnapshot.val());
+        //var val = openTicketSnapshot.val();
+        console.log(val.Legende);
+      });
+    });
   });
 }
 
