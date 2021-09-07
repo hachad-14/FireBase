@@ -72,9 +72,9 @@ document.getElementById('retrieve').onclick = function() {
     .child(ImgName)
     .once('value', function (openTicketsSnapshot) {
       openTicketsSnapshot.forEach(function (openTicketSnapshot) {
-        //console.log(openTicketSnapshot.val());
+        console.log(openTicketSnapshot.val());
         //var val = openTicketSnapshot.val();
-        console.log(val.Legende);
+        //console.log(val.Legende);
       });
     });
   });
