@@ -13,7 +13,6 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 //const firebase = initializeApp(firebaseConfig);
 //const storage = getStorage(firebase);
-
 var ImgName, ImgUrl, comment;
 var files = [];
 var reader;
@@ -71,11 +70,9 @@ document.getElementById('retrieve').onclick = function() {
     .child('Pictures')
     .child(ImgName)
     .once('value', function (Snapshot) {
-      Snapshot.forEach(function (snapshot) {
-        console.log(Snapshot.val().Commentaire);
-        //console.log(Snapshot.val().Name);
-        document.getElementById('comment').innerHTML = (Snapshot.val().Comma);
-      });
+      console.log(Snapshot.val().Name);
+      console.log(Snapshot.val().Commentaire);
+      document.getElementById('comment').innerHTML = (Snapshot.val().Commentaire);
     });
   });
 }

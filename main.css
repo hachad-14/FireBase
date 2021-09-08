@@ -5,7 +5,6 @@
 }
 
 body {
-    height: 10vw;
     background-color: #000;
 }
 
@@ -23,6 +22,7 @@ body {
         position: absolute;
         top: 10vw;
         left: 32vw;
+        text-transform: lowercase;
     }
     #ctitle {
         position: absolute;
@@ -59,25 +59,28 @@ body {
         font-size: 3vw;
         color: green;
     }
-    #namebox {
-        text-transform: lowercase;
-    }
     #desc {
         position: absolute;
         top: 10vw;
         left: 10vw;
         font-size: 10vw;
     }
-    #myimg {
+    #box {
         position: absolute;
-        top: 50vw;
+        padding: -100%;
+        top: 45vw;
         left: 17vw;
         width: 65vw;
         height: auto;
         border: 2px solid black;
     }
+    #myimg{
+        width: 100%;
+        height: 100%; 
+    }
     #comment {
-        position: absolute;
-        text-align: center;
+        position:absolute;                 
+        margin-top: 2vw;
+        left: -1vw;
     }
 }
