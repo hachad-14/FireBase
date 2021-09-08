@@ -34,14 +34,6 @@ body {
         top: 20vw;
         left: 32vw;
     }
-    #myimg {
-        position: absolute;
-        top: 50vw;
-        left: 17vw;
-        width: 65vw;
-        height: auto;
-        border: 2px solid black;
-    }
     #select {
         position: absolute;
         top: 32vw;
@@ -76,9 +68,16 @@ body {
         left: 10vw;
         font-size: 10vw;
     }
+    #myimg {
+        position: absolute;
+        top: 50vw;
+        left: 17vw;
+        width: 65vw;
+        height: auto;
+        border: 2px solid black;
+    }
     #comment {
         position: absolute;
-        top: 138vw;
-        left: 17vw;
+        text-align: center;
     }
 }

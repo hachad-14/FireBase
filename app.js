@@ -41,7 +41,7 @@ document.getElementById("upload").onclick = function() {
     ImgName = document.getElementById('namebox').value;
   }
   comment = document.getElementById('commentbox').value;
-  var uploadTask = firebase.storage().ref('Images/'+ImgName+".png"+comment).put(files[0]);
+  var uploadTask = firebase.storage().ref('Images/'+ImgName+".png").put(files[0]);
   uploadTask.on('state_changed', function(snapshot) {
     var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
     document.getElementById("console").innerHTML = 'Upload'+' '+progress+'%';
@@ -53,9 +53,9 @@ document.getElementById("upload").onclick = function() {
     uploadTask.snapshot.ref.getDownloadURL().then(function(url) {
       ImgUrl = url;
       firebase.database().ref('Pictures/'+ImgName).set({
-          Name: ImgName,
-          Link: ImgUrl,
-          Legende: comment
+        Name: ImgName,
+        Link: ImgUrl,
+        Commentaire: comment
       });
       console.log('Image Stored In DataBase.');
       document.getElementById('console').innerHTML = 'Image Stored In DataBase';
@@ -66,15 +66,15 @@ document.getElementById('retrieve').onclick = function() {
   ImgName = document.getElementById('namebox').value;
   firebase.database().ref('Pictures/'+ImgName).on('value', function(snapshot){
     $('#myimg').attr('src', snapshot.val().Link);
-    console.log(ImgName);
+
     firebase.database().ref()
     .child('Pictures')
     .child(ImgName)
-    .once('value', function (openTicketsSnapshot) {
-      openTicketsSnapshot.forEach(function (openTicketSnapshot) {
-        console.log(openTicketSnapshot.val());
-        //var val = openTicketSnapshot.val();
-        //console.log(val.Legende);
+    .once('value', function (Snapshot) {
+      Snapshot.forEach(function (snapshot) {
+        console.log(Snapshot.val().Commentaire);
+        //console.log(Snapshot.val().Name);
+        document.getElementById('comment').innerHTML = (Snapshot.val().Comma);
       });
     });
   });
