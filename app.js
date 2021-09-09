@@ -37,7 +37,7 @@ document.getElementById("upload").onclick = function() {
     ImgName = 'post' + Math.floor(1000 + Math.random() * 9000);
     console.log(ImgName + '.png');
   } else {
-    ImgName = document.getElementById('namebox').value;
+    ImgName = document.getElementById('namebox').value.toLowerCase();
   }
   comment = document.getElementById('commentbox').value;
   var uploadTask = firebase.storage().ref('Images/'+ImgName+".png").put(files[0]);

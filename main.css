@@ -22,7 +22,6 @@ body {
         position: absolute;
         top: 10vw;
         left: 32vw;
-        text-transform: lowercase;
     }
     #ctitle {
         position: absolute;
@@ -67,12 +66,10 @@ body {
     }
     #box {
         position: absolute;
-        padding: -100%;
         top: 45vw;
         left: 17vw;
         width: 65vw;
-        height: auto;
-        border: 2px solid black;
+        border: 1px solid black;
     }
     #myimg{
         width: 100%;
