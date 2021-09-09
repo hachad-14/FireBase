@@ -27,11 +27,13 @@ document.getElementById("select").onclick = function(e) {
       reader.onload = function() {
         document.getElementById("myimg").src = files.result;
         $('#myimg').attr('src', reader.result);
-        }
-        reader.readAsDataURL(files[0])
+        document.getElementById('comment').innerHTML = '';
+      }
+      reader.readAsDataURL(files[0])
     });
     input.click();
 }
+
 document.getElementById("upload").onclick = function() {
   if(document.getElementById("namebox").value.length == 0) {
     ImgName = 'post' + Math.floor(1000 + Math.random() * 9000);
@@ -58,11 +60,17 @@ document.getElementById("upload").onclick = function() {
       });
       console.log('Image Stored In DataBase.');
       document.getElementById('console').innerHTML = 'Image Stored In DataBase';
+
+      setTimeout( function(){ 
+        document.getElementById('commentbox').value = '';
+        document.getElementById('console').innerHTML = '';
+      }, 1500 );
     });
   });
 }
+
 document.getElementById('retrieve').onclick = function() {
-  ImgName = document.getElementById('namebox').value;
+  ImgName = document.getElementById('namebox').value.toLowerCase();
   firebase.database().ref('Pictures/'+ImgName).on('value', function(snapshot){
     $('#myimg').attr('src', snapshot.val().Link);
 
