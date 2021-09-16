@@ -1,6 +1,7 @@
 @media only screen and (max-width: 575px) {
     body {
-        background-color: #fff; 
+        background-color: #fff;
+        overflow-x: hidden;
     }
     p {
         margin-top: 10vw;
