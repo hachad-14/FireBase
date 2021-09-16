@@ -13,7 +13,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 //const firebase = initializeApp(firebaseConfig);
 //const storage = getStorage(firebase);
-var ImgName, ImgUrl, comment;
+var ImgName, ImgUrl, comment, imgHeight;
 var files = [];
 var reader;
 
@@ -25,6 +25,9 @@ document.getElementById("select").onclick = function(e) {
       files = e.target.files;
       reader = new FileReader();
       reader.onload = function() {
+        imgHeight = document.getElementById('myimg').height;
+        alert(imgHeight);
+
         document.getElementById("myimg").src = files.result;
         $('#myimg').attr('src', reader.result);
         document.getElementById('comment').innerHTML = '';
@@ -56,7 +59,8 @@ document.getElementById("upload").onclick = function() {
       firebase.database().ref('Pictures/'+ImgName).set({
         Name: ImgName,
         Link: ImgUrl,
-        Commentaire: comment
+        Commentaire: comment,
+        ImgHeight: imgHeight
       });
       console.log('Image Stored In DataBase.');
       document.getElementById('console').innerHTML = 'Image Stored In DataBase';
@@ -67,6 +71,20 @@ document.getElementById("upload").onclick = function() {
       }, 1500 );
     });
   });
+}
+
+const img = document.getElementById('myimg');
+img.onload = function test() {
+  console.log('width:'+this.width+' - height:'+this.height);
+  console.log('----------------');
+  if ($('#box img').height() > 300) {
+    $('#box img').css('objectFit', 'cover');
+    $('#box img').css('height', '100vw');
+    $('#box').css('height', '100vw');
+  } else{
+    $('#box img').css('height', 'auto');
+    $('#box').css('height', 'au');
+  }
 }
 
 document.getElementById('retrieve').onclick = function() {
@@ -85,8 +103,14 @@ document.getElementById('retrieve').onclick = function() {
   });
 }
 
-var increment = (function(n) {
-  return function() {
-    console.log(Math.floor(1000 + Math.random() * 9000));
-  }
-});
+document.getElementById('test').onclick = function() {
+  firebase
+  .database()
+  .ref('Pictures')
+  .orderByChild('timestamp')
+  .limitToLast(1)
+  .once('value', (snapshot) => {
+      // take the last item with the lowest timestamp in the snapshot
+      console.log(snapshot.val().Name);
+  });
+}

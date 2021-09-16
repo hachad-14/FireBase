@@ -4,29 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="#">
     <title>Document</title>
 </head>
 <body>
-    <h4 id="ntitle">Image Name</h4> <input id="namebox" type="text"> <br><br>
-    <h4 id="ctitle">Comment</h4> <input id="commentbox" type="text"> <br><br>
-    <button id="select">Select Image</button>
-    <button id="upload">Upload</button>
-    <button id="retrieve">Retrieve Image</button>
-    <button id="test">Fire</button>
-    <div id="box">
-        <img id="myimg" type="image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
-        <p id="comment"></p>
-    </div>
-    <h1 id="console"></h1>
+    
+    <ul id="all">
+        <li id="list"></li>
+    </ul>
 
     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-storage.js"></script> 
     
-    <script type="module" id="MainScript" src="app.js"></script>
+    <script type="module" id="MainScript" src="test.js"></script>
 </body>
 </html>

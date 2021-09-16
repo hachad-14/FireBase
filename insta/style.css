@@ -1,0 +1,27 @@
+@media only screen and (max-width: 575px) {
+    body {
+        background-color: #fff; 
+    }
+    p {
+        margin-top: 10vw;
+        margin-left: 1vw;
+        margin-bottom: 1vw;
+        font-family: 'Roboto';
+        font-size: 5vw;
+        font-weight: bolder;
+    }
+    li {
+        margin-left: 1vw;
+        margin-top: 0vw;
+        margin-bottom: 0vw;
+        font-family: 'Roboto';
+        font-size: 4vw;
+    }
+    #list {
+        margin-left: -13VW;
+        list-style: none;
+    }
+    #all img{
+        width: 100vw;
+    }
+}
