@@ -13,7 +13,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 //const firebase = initializeApp(firebaseConfig);
 //const storage = getStorage(firebase);
-var ImgName, ImgUrl, comment, imgHeight;
+var ImgName, ImgUrl, comment, order;
 var files = [];
 var reader;
 
@@ -25,9 +25,6 @@ document.getElementById("select").onclick = function(e) {
       files = e.target.files;
       reader = new FileReader();
       reader.onload = function() {
-        imgHeight = document.getElementById('myimg').height;
-        alert(imgHeight);
-
         document.getElementById("myimg").src = files.result;
         $('#myimg').attr('src', reader.result);
         document.getElementById('comment').innerHTML = '';
@@ -60,7 +57,7 @@ document.getElementById("upload").onclick = function() {
         Name: ImgName,
         Link: ImgUrl,
         Commentaire: comment,
-        ImgHeight: imgHeight
+        Order: order
       });
       console.log('Image Stored In DataBase.');
       document.getElementById('console').innerHTML = 'Image Stored In DataBase';
@@ -103,14 +100,13 @@ document.getElementById('retrieve').onclick = function() {
   });
 }
 
-document.getElementById('test').onclick = function() {
-  firebase
-  .database()
-  .ref('Pictures')
-  .orderByChild('timestamp')
-  .limitToLast(1)
-  .once('value', (snapshot) => {
-      // take the last item with the lowest timestamp in the snapshot
-      console.log(snapshot.val().Name);
-  });
+updateVisitCount();
+
+function updateVisitCount() {
+  fetch('https://api.countapi.xyz/update/p_Order/posts/?amount=+1')
+  .then(res => res.json())
+  .then(res => {
+    console.log(res.value);
+    order = res.value;
+  })
 }

@@ -40,7 +40,7 @@ function addItemsToList(name,com) {
     ul.appendChild(_com);
 }
 
-firebase.database().ref('Pictures').once('value',function test(snapshot) {
+firebase.database().ref('Pictures').orderByChild('Order').once('value',function test(snapshot) {
     snapshot.forEach (
         function(childSnapshot) {   
             console.log( childSnapshot.val().Link);
