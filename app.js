@@ -35,6 +35,7 @@ document.getElementById("select").onclick = function(e) {
 }
 
 document.getElementById("upload").onclick = function() {
+  get_Order();
   if(document.getElementById("namebox").value.length == 0) {
     ImgName = 'post' + Math.floor(1000 + Math.random() * 9000);
     console.log(ImgName + '.png');
@@ -100,13 +101,15 @@ document.getElementById('retrieve').onclick = function() {
   });
 }
 
-updateVisitCount();
+function get_Order() {
+  updateVisitCount();
 
-function updateVisitCount() {
-  fetch('https://api.countapi.xyz/update/p_Order/posts/?amount=+1')
-  .then(res => res.json())
-  .then(res => {
-    console.log(res.value);
-    order = res.value;
-  })
+  function updateVisitCount() {
+    fetch('https://api.countapi.xyz/update/posts/Order/?amount=-1')
+    .then(res => res.json())
+    .then(res => {
+      console.log(res.value);
+      order = res.value;
+    })
+  }
 }
